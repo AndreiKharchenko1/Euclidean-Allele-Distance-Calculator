@@ -40,6 +40,7 @@ double frequencyC[snps];
  double frequencyuser[snps];
  double totaleuclideanA =0; double totaleuclideanB = 0; double totaleuclideanC =0;
  double totalacceleratedA =0; double totalacceleratedB = 0; double totalacceleratedC = 0;
+ double AtoB =0; double AtoC = 0; double BtoC = 0;
  for(int i = 0; i<snps; i++){
     cout << "Enter how many derived alleles you have in snp # " << i+1 << " : "  ;
     cin >> derivedinuser[i];
@@ -56,11 +57,19 @@ double frequencyC[snps];
     totalacceleratedA = totalacceleratedA + acceleratedmethod(frequencyA[i], frequencyuser[i]);
     totalacceleratedB = totalacceleratedB + acceleratedmethod(frequencyB[i], frequencyuser[i]);
     totalacceleratedC = totalacceleratedC + acceleratedmethod(frequencyC[i], frequencyuser[i]);
+    AtoB = AtoB + euclideanmethod(frequencyA[i], frequencyB[i]);
+    AtoC = AtoC + euclideanmethod(frequencyA[i], frequencyC[i]);
+    BtoC = BtoC + euclideanmethod(frequencyB[i], frequencyC[i]);
+
  }
 cout << "Euclidean Method distance to population A is: " << sqrt(totaleuclideanA) << "\n";
 cout << "Euclidean Method distance to population B is: " << sqrt(totaleuclideanB) << "\n";
 cout << "Euclidean Method distance to population C is: " << sqrt(totaleuclideanC) << "\n";
-cout << "Accelerated Euclidean Method distance to population A is: " << sqrt(totalacceleratedA) << "\n";
-cout << "Accelerated Euclidean Method distance to population B is: " << sqrt(totalacceleratedB) << "\n";
-cout << "Accelerated Euclidean Method distance to population C is: " << sqrt(totalacceleratedC) << "\n";
+cout << "Accelerated Euclidean Method distance to population A is: " << totalacceleratedA << "\n";
+cout << "Accelerated Euclidean Method distance to population B is: " << totalacceleratedB << "\n";
+cout << "Accelerated Euclidean Method distance to population C is: " << totalacceleratedC << "\n";
+cout << "Vahaduo Coordinates for : GroupA," << 0 << "," << sqrt(AtoB) << "," << sqrt(AtoC);
+cout << "Vahaduo Coordinates for : GroupB," << sqrt(AtoB) << "," << 0 << "," << sqrt(BtoC);
+cout << "Vahaduo Coordinates for: GroupC," << sqrt(AtoC) << "," << sqrt(BtoC) << "," << 0;
+cout << "Vahaduo Coordinates for : User," << sqrt(totaleuclideanA) << "," << sqrt(totaleuclideanB) << "," << sqrt(totaleuclideanC);
 }
